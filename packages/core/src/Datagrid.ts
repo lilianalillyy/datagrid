@@ -1,5 +1,12 @@
 import { calculateCellLines, debounce, isEnter, isEsc, isFunctionKey, isInKeyRange, window } from "./utils";
-import type { DatagridEventMap, Nette, TypedEventListener, Ajax } from "./types";
+import type {
+  DatagridEventMap,
+  Nette,
+  TypedEventListener,
+  Ajax,
+  LoadEventData,
+  DatagridEventDataMap,
+} from "./types";
 import type { SortableInterface } from "./extensions/Sortable";
 import type { Happy } from "./Happy";
 
@@ -92,13 +99,18 @@ export class Datagrid extends EventTarget {
     this.loadDatagrids();
   }
 
-  // TODO: call on re-render
   public loadDatagrids() {
     this.rootEl.querySelectorAll<HTMLElement>(this.options.datagridSelector).forEach(datagrid => {
       const gridName = this.resolveDatagridName(datagrid);
       if (!gridName) {
         return;
       }
+
+      const shouldLoad = this.dispatchEvent(
+        new CustomEvent<LoadEventData>("beforeLoad", { detail: { datagrid, gridName } })
+      );
+
+      if (!shouldLoad) return;
 
       const isSortable = datagrid.hasAttribute("data-sortable");
       const hasSortableTreeChildren = !!datagrid.querySelector(".datagrid-tree-item-children");
@@ -180,6 +192,8 @@ export class Datagrid extends EventTarget {
       }
 
       this.attachEventListeners(gridName, datagrid);
+
+      this.dispatchEvent(new CustomEvent("afterLoad", { detail: { datagrid, gridName } }));
     });
   }
 
@@ -506,5 +520,7 @@ export class Datagrid extends EventTarget {
     options?: boolean | AddEventListenerOptions
   ) => void;
 
-  public declare dispatchEvent: <K extends keyof DatagridEventMap>(event: DatagridEventMap[K]) => boolean;
+  public declare dispatchEvent: <K extends keyof DatagridEventMap>(
+    event: CustomEvent<DatagridEventDataMap[K]>
+  ) => boolean;
 }

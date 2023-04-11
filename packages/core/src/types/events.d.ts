@@ -17,16 +17,32 @@ export interface LoadEventData {
   /**
    * The datagrid container (.datagrid)
    */
-  element: HTMLElement;
+  datagrid: HTMLElement;
+
+  /**
+   * Name of the datagrid
+   */
+  gridName: string;
 }
 
 export interface LoadEvent extends CustomEvent<LoadEventData> {}
 
 export type DatagridEventMap = {
   /**
-   * This event is triggered before each individual datagrid is initialized event listeners are attached
-   * to elements on a datagrid. This event is useful if some of the elements
-   * are modified and would change how this library interacts with them.
+   * This event is triggered before an individual datagrid is initialized and event listeners are attached
+   * to the elements in the it. This event is useful if you need to change some of the elements, especially
+   * if they change how this library interacts with them.
    */
-  load: LoadEvent;
+  beforeLoad: LoadEvent;
+
+  /**
+   * This event is triggered after an individual datagrid is initialized and event listeners are attached
+   * to the elements in the it.
+   */
+  afterLoad: LoadEvent;
+};
+
+export type DatagridEventDataMap = {
+  beforeLoad: LoadEventData;
+  afterLoad: LoadEventData;
 };
