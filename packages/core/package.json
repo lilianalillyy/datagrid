@@ -1,0 +1,25 @@
+{
+  "name": "@liliana/datagrid-core",
+  "version": "1.0.0",
+  "description": "Replacement for Contributte/Ublaboo Datagrid (client-side)",
+  "author": "Mia L. Vališová <lilianalillyy@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "files": [
+    "dist/*"
+  ],
+  "main": "dist/datagrid-core.esm.js",
+  "typings": "dist/index.esm.d.ts",
+  "dependencies": {
+    "rollup": "^3.20.2",
+    "sortablejs": "^1.15.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@types/sortablejs": "^1.15.1",
+    "rollup-plugin-import-css": "^3.2.1"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  }
+}

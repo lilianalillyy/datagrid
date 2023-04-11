@@ -1,0 +1,17 @@
+{
+  "name": "@liliana/datagrid-naja",
+  "version": "1.0.0",
+  "description": "Naja implementation of Datagrid Ajax",
+  "author": "Mia L. Vališová <lilianalillyy@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@liliana/datagrid-core": "^1.0.0"
+  },
+  "dependencies": {
+    "naja": "^2.5.0"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  }
+}

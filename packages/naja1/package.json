@@ -1,0 +1,11 @@
+{
+  "name": "@liliana/datagrid-naja1",
+  "version": "1.0.0",
+  "description": "Naja 1 implementation of Datagrid Ajax",
+  "author": "Mia L. Vališová <lilianalillyy@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@liliana/datagrid-core": "^1.0.0"
+  }
+}

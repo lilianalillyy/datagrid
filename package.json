@@ -1,0 +1,25 @@
+{
+  "version": "0.1.0",
+  "description": "Replacement for Contributte/Ublaboo Datagrid (client-side)",
+  "author": "Mia L. Vališová <lilianalillyy@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "watch": "lerna run --parallel watch",
+    "publish": "lerna publish",
+    "publish:ci": "lerna publish --yes --no-verify-access"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "lerna": "^6.6.1",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

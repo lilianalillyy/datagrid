@@ -1,0 +1,21 @@
+{
+  "include": ["./packages/**/*"],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "strict": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "downlevelIteration": true
+  },
+  "exclude": ["node_modules"]
+}

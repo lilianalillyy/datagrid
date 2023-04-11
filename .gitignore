@@ -1,0 +1,6 @@
+node_modules
+.idea
+.vscode
+yarn-error.log
+old.js
+dist

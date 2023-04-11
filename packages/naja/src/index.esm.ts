@@ -1,0 +1,1 @@
+export { NajaAjax } from "./NajaAjax";
