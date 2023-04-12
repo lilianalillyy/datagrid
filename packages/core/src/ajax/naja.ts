@@ -1,17 +1,15 @@
 import type { Naja } from "naja";
-import type { Datagrid, Ajax, RequestArgs, Response } from "@liliana/datagrid-core";
+import type { Ajax, RequestParams, Response } from "../types";
+import { Datagrid } from "../datagrid";
 
-export class NajaAjax implements Ajax {
-  constructor(public naja: Naja, public datagrid: Datagrid) {}
-
-  init(): void {
-    this.naja.addEventListener("success", () => {
-      this.datagrid.loadDatagrids();
-    });
+export class NajaAjax extends EventTarget implements Ajax  {
+  constructor(public naja: Naja, public datagrid: Datagrid) {
+    super();
+    naja.addEventListener('')
   }
 
   async call<TResponseData = {}, TRequestData = {}>(
-    args: RequestArgs<TRequestData>
+    args: RequestParams<TRequestData>
   ): Promise<Response<TResponseData>> {
     return (await this.naja.makeRequest(args.method, args.url, args.data)) as Response<TResponseData>;
   }

@@ -1,6 +1,19 @@
-import { Datagrid } from "../Datagrid";
+import { Datagrid } from "../datagrid/Datagrid";
 import { Happy } from "../Happy";
-import { Sortable } from "../extensions";
+import { Sortable } from "../plugins";
+
+export interface DatagridOptions {
+  confirm(this: Datagrid, message: string): boolean;
+  // Returning null will skip this datagrid
+  resolveDatagridName: (this: Datagrid, datagrid: HTMLElement) => string | null;
+  plugins: DatagridPlugin<any>[];
+  nette: Nette | null;
+}
+
+export interface DatagridsOptions {
+  datagrid: Partial<DatagridOptions>;
+  selector: string;
+}
 
 export interface Nette {
   initForm: (form: HTMLFormElement) => void;
@@ -9,25 +22,25 @@ export interface Nette {
 export type Constructor<T> = new (...args: any[]) => T;
 
 export interface ExtendedWindow extends Window {
-  // Very weak type of jQuery as it is only needed at one place
-  // for supporting a basically unused thing and might be removed anyways
-  jQuery?: {
-    (...args: unknown[]): any;
-    fn: {
-      selectpicker?: {
-        (data: unknown): unknown;
-        defaults: Record<string, unknown>;
-      };
-    };
-  };
+  jQuery?: any;
   Nette?: Nette;
   happy?: Happy;
   Liliana?: {
     Datagrid?: Constructor<Datagrid>;
-    Happy?: Constructor<Happy>;
-    Sortable?: Constructor<Sortable>;
+    createDatagrid: typeof A;
   };
 }
+
+export type DatagridPluginCallback<T extends unknown | boolean> = (this: Datagrid) => T;
+
+export interface DatagridPluginObject<T extends unknown | boolean> {
+  name?: string;
+  load: DatagridPluginCallback<T>;
+}
+
+export type DatagridPlugin<T extends unknown | boolean = unknown> =
+  | DatagridPluginCallback<T>
+  | DatagridPluginObject<T>;
 
 export * from "./events";
 export * from "./ajax";

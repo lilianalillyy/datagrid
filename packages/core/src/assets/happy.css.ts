@@ -1,4 +1,4 @@
-/**
+export const happyStyles = `/**
  * From happy-inputs by paveljanda:
  * https://github.com/paveljanda/happy/blob/94357b7146b5f3029cc565859a588c5832dd374a/src/happy.css
  */
@@ -461,3 +461,4 @@ label {
   -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 }
+`;

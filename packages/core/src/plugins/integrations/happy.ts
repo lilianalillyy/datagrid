@@ -1,3 +1,7 @@
+import { happyStyles } from "../../assets/happy.css";
+import { DatagridPlugin } from "../../types";
+import { window } from "../../utils";
+
 /**
  * Slightly cleaned up & typed version of happy-inputs by paveljanda.
  *
@@ -14,6 +18,9 @@ export class Happy {
   };
 
   init() {
+    if (!document.querySelector('[data-happy-stylesheet]')) {
+        document.head.append(`<style data-happy-stylesheet>${happyStyles}</style>`)
+    }
     this.removeBySelector(".happy-radio");
     this.removeBySelector(".happy-checkbox");
 
@@ -214,4 +221,17 @@ export class Happy {
 
     this.checkRadioState(target);
   }
+}
+
+export interface HappyOptions {
+  happy?: Happy;
+}
+
+export function happy(options: Partial<HappyOptions> = {}): DatagridPlugin {
+  return function () {
+    const happy = options.happy ?? window().happy ?? null;
+    if (happy) {
+      happy.init();
+    }
+  };
 }
