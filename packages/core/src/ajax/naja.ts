@@ -7,6 +7,10 @@ export class NajaAjax extends EventTarget implements Ajax  {
     super();
   }
 
+  init(): void {
+    
+  }
+
   async call<TResponseData = {}, TRequestData = {}>(
     args: RequestParams<TRequestData>
   ): Promise<Response<TResponseData>> {
