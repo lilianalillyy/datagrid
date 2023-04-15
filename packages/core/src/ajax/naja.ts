@@ -5,7 +5,6 @@ import { Datagrid } from "../datagrid";
 export class NajaAjax extends EventTarget implements Ajax  {
   constructor(public naja: Naja, public datagrid: Datagrid) {
     super();
-    naja.addEventListener('')
   }
 
   async call<TResponseData = {}, TRequestData = {}>(
